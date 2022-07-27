@@ -17,13 +17,13 @@ public class Main {
             newChars[0] = wordChars[0];
             newChars[newChars.length - 1] = wordChars[wordChars.length - 1];
             for (int i = 1; i < wordChars.length - 1; i++) {
-                int position = (int) (Math.random() * (wordChars.length - 2) + 1);
-                if (!indexes.contains(position)) {
-                    newChars[i] = wordChars[position];
-                    indexes.add(position);
-                } else {
-                    i--;
+                int position;
+                do {
+                    position = (int) (Math.random() * (wordChars.length - 2) + 1);
                 }
+                while (indexes.contains(position));
+                newChars[i] = wordChars[position];
+                indexes.add(position);
             }
             System.out.println("Попробуйте отгадать, какое животное тут зашифровано?");
             for (char c : newChars
@@ -40,16 +40,18 @@ public class Main {
             }
             System.out.println("Сыграем еще раз? (да/нет)");
             Scanner scanner3 = new Scanner(System.in);
-            switch (scanner3.next()){
+            switch (scanner3.next()) {
+
+
                 case "да":
                     break;
                 case "нет":
                     System.out.println("Спасибо за игру. До встречи!");
-                    ready=false;
+                    ready = false;
                     break;
                 default:
                     System.out.println("Неверная команда. Закрываем игру");
-                    ready=false;
+                    ready = false;
             }
         }
     }
